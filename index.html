@@ -19,19 +19,19 @@
 
         body {
             background: radial-gradient(circle at center, #0f2027, #203a43, #2c5364);
-            min-height: 100vh; /* Changed to min-height for responsiveness */
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Montserrat', 'Noto Nastaliq Urdu', serif;
             color: white;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
             position: relative;
-            padding: 20px 0; /* Add space for top/bottom on small screens */
+            padding: 20px 0;
         }
 
         .stars-background {
-            position: fixed; /* Fixed so it stays while scrolling */
+            position: fixed;
             width: 100%; height: 100%; top: 0; left: 0; z-index: 1;
         }
 
@@ -51,21 +51,29 @@
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 35px;
-            padding: 40px 25px;
+            padding: 35px 20px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.6);
         }
 
         #dynamic-sender-name {
-            font-size: 1.7rem;
+            font-size: 1.6rem;
             color: var(--primary-gold);
             font-weight: 600;
             margin-bottom: 5px;
             text-shadow: var(--text-glow);
         }
 
+        #advance-tag {
+            font-size: 1.1rem;
+            color: #fff;
+            opacity: 0.9;
+            display: block;
+            margin-bottom: -15px;
+        }
+
         .eid-main-title {
             font-family: 'Noto Nastaliq Urdu', serif;
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             line-height: 1.8;
             margin: 10px 0;
             background: linear-gradient(180deg, #fff, var(--primary-gold));
@@ -74,9 +82,27 @@
             animation: pulseGlow 3s infinite alternate;
         }
 
+        /* Countdown Timer Style */
+        .timer-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            direction: ltr; /* Timer numbers in English look better */
+        }
+        .timer-box {
+            background: rgba(253, 187, 45, 0.15);
+            border: 1px solid var(--primary-gold);
+            border-radius: 10px;
+            padding: 8px;
+            min-width: 65px;
+        }
+        .timer-num { font-size: 1.5rem; font-weight: bold; color: var(--primary-gold); display: block; }
+        .timer-label { font-size: 0.65rem; text-transform: uppercase; opacity: 0.8; }
+
         .eid-wish-message {
             font-family: 'Noto Nastaliq Urdu', serif;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 2.2;
             color: rgba(255, 255, 255, 0.9);
             margin: 20px 0;
@@ -85,23 +111,39 @@
         
         .prayer-bullet { color: var(--primary-gold); margin-left: 5px; }
 
-        .developer-portfolio {
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
             margin-top: 15px;
+        }
+
+        .action-btn {
             display: inline-block;
-            padding: 10px 20px;
-            background: rgba(253, 187, 45, 0.08);
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 600;
+        }
+
+        .portfolio-btn {
             border: 1px solid var(--primary-gold);
             color: var(--primary-gold);
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            transition: 0.3s;
+            background: rgba(253, 187, 45, 0.05);
         }
-        .developer-portfolio:hover { background: var(--primary-gold); color: #000; }
+        .portfolio-btn:hover { background: var(--primary-gold); color: #000; }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+        }
+        .whatsapp-btn:hover { background: #1da851; transform: scale(1.02); }
 
         .creator-tool-box {
-            margin-top: 30px;
+            margin-top: 25px;
             background: rgba(0, 0, 0, 0.4);
             border-radius: 20px;
             padding: 20px;
@@ -129,17 +171,10 @@
             border: none;
             width: 100%;
             cursor: pointer;
-            text-transform: uppercase;
             transition: 0.3s;
         }
 
-        .developer-tag {
-            margin-top: 25px;
-            font-size: 0.8rem;
-            opacity: 0.7;
-            padding-bottom: 10px;
-        }
-        .developer-tag span { color: var(--primary-gold); font-weight: bold; }
+        #share-section { display: none; margin-top: 20px; }
 
         @keyframes pulseGlow {
             0% { filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
@@ -151,25 +186,10 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        #share-section { display: none; margin-top: 20px; }
-        .wa-share-link {
-            background: #25D366;
-            color: white;
-            padding: 14px;
-            border-radius: 12px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-weight: bold;
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 480px) {
-            .eid-main-title { font-size: 2.8rem; }
-            .eid-wish-message { font-size: 1rem; }
-            .glass-card { padding: 30px 15px; }
+        /* Floating Stars Animation */
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
@@ -182,62 +202,93 @@
         <div id="dynamic-sender-name">سدیس احمد</div>
         <div style="font-size: 0.9rem; opacity: 0.8;">کی طرف سے آپ کو</div>
         
+        <span id="advance-tag"></span>
         <h1 class="eid-main-title">عید مبارک</h1>
+
+        <div class="timer-container" id="timer-ui">
+            <div class="timer-box"><span class="timer-num" id="days">00</span><span class="timer-label">Days</span></div>
+            <div class="timer-box"><span class="timer-num" id="hours">00</span><span class="timer-label">Hrs</span></div>
+            <div class="timer-box"><span class="timer-num" id="mins">00</span><span class="timer-label">Mins</span></div>
+            <div class="timer-box"><span class="timer-num" id="secs">00</span><span class="timer-label">Secs</span></div>
+        </div>
 
         <div class="eid-wish-message">
             اللہ رب العزت <span class="prayer-bullet">✨</span> اس مبارک دن کے صدقے آپ کے گھرانے پر اپنی رحمتوں کا سایہ ہمیشہ برقرار رکھے۔ <br>
-            دعا ہے <span class="prayer-bullet">✨</span> کہ یہ عید آپ کی زندگی میں نئی امیدیں اور بے شمار خوشیاں لے کر آئے۔ <br>
-            اللہ <span class="prayer-bullet">✨</span> آپ کو صحتِ کاملہ، رزق میں فراخی اور زندگی کے ہر موڑ پر کامیابی نصیب فرمائے۔ <br>
+            دعا ہے <span class="prayer-bullet">✨</span> کہ یہ عید آپ کی زندگی میں نئی امیدیں اور خوشیاں لے کر آئے۔ <br>
             <strong style="color: #fff; display: block; margin-top: 15px; text-align: center;">عید الفطر بہت بہت مبارک ہو!</strong>
         </div>
 
-        <a href="https://suddaishks.github.io/suddais-portfolio/" target="_blank" class="developer-portfolio">
-            <i class="fas fa-external-link-alt"></i> VISIT MY PORTFOLIO
-        </a>
+        <div class="btn-group">
+            <a href="https://suddaishks.github.io/suddais-portfolio/" target="_blank" class="action-btn portfolio-btn">
+                <i class="fas fa-briefcase"></i> VISIT PORTFOLIO
+            </a>
+            <a href="https://wa.me/923000000000" class="action-btn whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> CONTACT DEVELOPER
+            </a>
+        </div>
 
         <div id="creation-ui-box" class="creator-tool-box">
             <input type="text" id="userInputName" placeholder="اپنا نام یہاں لکھیں...">
-            <button class="btn-create-link" onclick="createFinalLink()">جادوئی لنک تیار کریں</button>
+            <button class="btn-create-link" onclick="createFinalLink()">جادوئی عید کارڈ بنائیں</button>
         </div>
 
         <div id="share-section">
-            <p style="margin-bottom: 10px; font-size: 0.85rem;">لنک تیار ہے! اب دوستوں کو بھیجیں:</p>
-            <a id="whatsapp-share-btn" href="#" target="_blank" class="wa-share-link">
+            <p style="margin-bottom: 10px; font-size: 0.85rem;">کارڈ تیار ہے! اب دوستوں کو بھیجیں:</p>
+            <a id="whatsapp-share-btn" href="#" target="_blank" class="action-btn whatsapp-btn" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
                 <i class="fab fa-whatsapp"></i> واٹس ایپ پر شیئر کریں
             </a>
         </div>
     </div>
 
-    <div class="developer-tag">
+    <div style="margin-top: 25px; font-size: 0.8rem; opacity: 0.7;">
         DESIGNED BY <span>SUDAIS AHMED</span>
     </div>
 </div>
 
 <script>
+    // 1. Countdown Logic (21 March 2026)
+    const targetDate = new Date("March 21, 2026 06:00:00").getTime();
+
+    function updateTimer() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+
+        if (diff > 0) {
+            document.getElementById('advance-tag').innerText = "ایڈوانس";
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = d.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = h.toString().padStart(2, '0');
+            document.getElementById('mins').innerText = m.toString().padStart(2, '0');
+            document.getElementById('secs').innerText = s.toString().padStart(2, '0');
+        } else {
+            document.getElementById('advance-tag').style.display = "none";
+            document.getElementById('timer-ui').style.display = "none";
+        }
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // 2. URL Name handling
     const urlParams = new URLSearchParams(window.location.search);
     const fromName = urlParams.get('from');
     if (fromName) {
         document.getElementById('dynamic-sender-name').innerText = decodeURIComponent(fromName);
     }
 
+    // 3. Create Share Link
     function createFinalLink() {
         const name = document.getElementById('userInputName').value;
-        const portfolio = "https://suddaishks.github.io/suddais-portfolio/";
-        
         if (name) {
-            const baseLink = window.location.origin + window.location.pathname;
-            const finalLink = baseLink + "?from=" + encodeURIComponent(name);
-            
-            // Professional message with portfolio link
+            const finalLink = window.location.origin + window.location.pathname + "?from=" + encodeURIComponent(name);
             const shareText = encodeURIComponent(
-                "🌙 *عید مبارک سرپرائز!* ✨\n\n" + 
-                "دیکھو *" + name + "* نے آپ کے لیے ایک خوبصورت پیغام بھیجا ہے! \n" +
-                "فورا یہاں کلک کریں: " + finalLink + "\n\n" +
-                "── • ☪ • ──\n" +
-                "Developed by: *Sudais Ahmed*\n" +
-                "Portfolio: " + portfolio
+                "🌙 *تَقَبَّلَ اللهُ مِنَّا وَمِنْكُمُ*\n\n" + 
+                "دیکھو *" + name + "* نے آپ کے لیے عید کا ایک خاص تحفہ بھیجا ہے! \n" +
+                "لنک کھولیں اور جادو دیکھیں: " + finalLink
             );
-            
             document.getElementById('whatsapp-share-btn').href = "https://api.whatsapp.com/send?text=" + shareText;
             document.getElementById('creation-ui-box').style.display = "none";
             document.getElementById('share-section').style.display = "block";
@@ -246,25 +297,25 @@
         }
     }
 
-    // Star creation
+    // 4. Falling Stars Creation
     const starsContainer = document.getElementById('stars-field');
-    for (let i = 0; i < 70; i++) {
+    function createStar() {
         const star = document.createElement('div');
+        const size = Math.random() * 3 + 'px';
         star.style.position = 'absolute';
-        star.style.width = Math.random() * 3 + 'px';
-        star.style.height = star.style.width;
-        star.style.background = 'white';
+        star.style.width = size;
+        star.style.height = size;
+        star.style.background = '#fdbb2d';
         star.style.borderRadius = '50%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.left = Math.random() * 100 + '%';
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.top = '-10px';
         star.style.opacity = Math.random();
-        star.style.animation = 'twinkle ' + (Math.random() * 4 + 2) + 's infinite';
+        star.style.boxShadow = '0 0 10px #fdbb2d';
+        star.style.animation = `fall ${Math.random() * 3 + 4}s linear infinite`;
         starsContainer.appendChild(star);
+        setTimeout(() => star.remove(), 6000);
     }
-
-    const styleSheet = document.createElement("style");
-    styleSheet.innerText = `@keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }`;
-    document.head.appendChild(styleSheet);
+    setInterval(createStar, 150);
 </script>
 
 </body>
