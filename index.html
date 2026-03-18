@@ -18,29 +18,31 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            background: radial-gradient(circle at center, #0f2027, #203a43, #2c5364); /* Deep Professional Gradient */
-            height: 100vh;
+            background: radial-gradient(circle at center, #0f2027, #203a43, #2c5364);
+            min-height: 100vh; /* Changed to min-height for responsiveness */
             display: flex;
             justify-content: center;
             align-items: center;
             font-family: 'Montserrat', 'Noto Nastaliq Urdu', serif;
             color: white;
-            overflow: hidden;
+            overflow-x: hidden; /* Prevent horizontal scroll */
             position: relative;
+            padding: 20px 0; /* Add space for top/bottom on small screens */
         }
 
-        /* Animated Stars Background */
         .stars-background {
-            position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1;
+            position: fixed; /* Fixed so it stays while scrolling */
+            width: 100%; height: 100%; top: 0; left: 0; z-index: 1;
         }
 
         .main-container {
             position: relative;
             z-index: 10;
-            width: 90%;
+            width: 95%;
             max-width: 520px;
             text-align: center;
             animation: fadeIn 1.2s ease-out;
+            margin: auto;
         }
 
         .glass-card {
@@ -49,15 +51,12 @@
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 35px;
-            padding: 45px 35px;
+            padding: 40px 25px;
             box-shadow: 0 30px 60px rgba(0,0,0,0.6);
-            transition: transform 0.3s;
         }
-        
-        .glass-card:hover { transform: translateY(-5px); }
 
         #dynamic-sender-name {
-            font-size: 1.9rem;
+            font-size: 1.7rem;
             color: var(--primary-gold);
             font-weight: 600;
             margin-bottom: 5px;
@@ -66,100 +65,89 @@
 
         .eid-main-title {
             font-family: 'Noto Nastaliq Urdu', serif;
-            font-size: 4rem;
-            line-height: 1.7;
-            margin: 15px 0;
+            font-size: 3.5rem;
+            line-height: 1.8;
+            margin: 10px 0;
             background: linear-gradient(180deg, #fff, var(--primary-gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: pulseGlow 3s infinite alternate;
         }
 
-        /* Detailed Prayer & Wish Message */
         .eid-wish-message {
             font-family: 'Noto Nastaliq Urdu', serif;
-            font-size: 1.15rem;
-            line-height: 2.3;
+            font-size: 1.1rem;
+            line-height: 2.2;
             color: rgba(255, 255, 255, 0.9);
-            margin: 25px 0;
+            margin: 20px 0;
             text-align: right;
         }
         
-        .prayer-bullet {
-            color: var(--primary-gold); margin-left: 8px; font-size: 0.9rem;
-        }
+        .prayer-bullet { color: var(--primary-gold); margin-left: 5px; }
 
-        /* Portfolio Button Styling */
         .developer-portfolio {
-            margin-top: 20px;
+            margin-top: 15px;
             display: inline-block;
-            padding: 10px 25px;
+            padding: 10px 20px;
             background: rgba(253, 187, 45, 0.08);
             border: 1px solid var(--primary-gold);
             color: var(--primary-gold);
             text-decoration: none;
             border-radius: 50px;
-            font-size: 0.8rem;
-            letter-spacing: 1.5px;
-            transition: all 0.3s;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            transition: 0.3s;
         }
         .developer-portfolio:hover { background: var(--primary-gold); color: #000; }
 
-        /* Creator Tool (Input) Section */
         .creator-tool-box {
-            margin-top: 35px;
+            margin-top: 30px;
             background: rgba(0, 0, 0, 0.4);
             border-radius: 20px;
-            padding: 25px;
+            padding: 20px;
         }
 
         input {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             border-radius: 12px;
             border: 1px solid rgba(255,255,255,0.2);
             background: rgba(255,255,255,0.06);
             color: #fff;
             text-align: center;
-            font-size: 1.05rem;
-            margin-bottom: 15px;
-            transition: 0.3s;
+            font-size: 1rem;
+            margin-bottom: 12px;
+            outline: none;
         }
-        input:focus { border-color: var(--primary-gold); box-shadow: 0 0 10px rgba(253,187,45,0.3); outline: none; }
 
         .btn-create-link {
             background: linear-gradient(45deg, #fdbb2d, #f4791f);
             color: #000;
-            padding: 15px;
+            padding: 14px;
             border-radius: 12px;
             font-weight: 700;
             border: none;
             width: 100%;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: 0.4s;
+            transition: 0.3s;
         }
-        .btn-create-link:hover { transform: scale(1.03); box-shadow: 0 12px 25px rgba(244, 121, 31, 0.5); }
 
-        /* Footer Credit (Developer Tag) */
         .developer-tag {
-            margin-top: 30px;
-            font-size: 0.85rem;
-            opacity: 0.6;
-            letter-spacing: 2px;
+            margin-top: 25px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            padding-bottom: 10px;
         }
         .developer-tag span { color: var(--primary-gold); font-weight: bold; }
 
-        /* Animations */
         @keyframes pulseGlow {
             0% { filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
-            50% { filter: drop-shadow(0 0 15px rgba(255,255,255,0.6)); }
-            100% { filter: drop-shadow(0 0 8px rgba(253,187,45,0.8)); }
+            100% { filter: drop-shadow(0 0 15px var(--primary-gold)); }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -167,25 +155,21 @@
         .wa-share-link {
             background: #25D366;
             color: white;
-            padding: 15px;
+            padding: 14px;
             border-radius: 12px;
             text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             font-weight: bold;
-            font-size: 1.1rem;
-            transition: 0.3s;
         }
-        .wa-share-link:hover { background: #1da851; transform: scale(1.03); }
 
-        /* Mobile Optimization */
-        @media (max-width: 600px) {
-            .glass-card { padding: 35px 20px; }
-            .eid-main-title { font-size: 3.2rem; }
-            .eid-wish-message { font-size: 1.05rem; }
-            #dynamic-sender-name { font-size: 1.6rem; }
+        /* Mobile Adjustments */
+        @media (max-width: 480px) {
+            .eid-main-title { font-size: 2.8rem; }
+            .eid-wish-message { font-size: 1rem; }
+            .glass-card { padding: 30px 15px; }
         }
     </style>
 </head>
@@ -196,28 +180,28 @@
 <div class="main-container">
     <div class="glass-card">
         <div id="dynamic-sender-name">سدیس احمد</div>
-        <div style="font-size: 0.95rem; opacity: 0.75; margin-bottom: 5px;">کی طرف سے آپ کو</div>
+        <div style="font-size: 0.9rem; opacity: 0.8;">کی طرف سے آپ کو</div>
         
         <h1 class="eid-main-title">عید مبارک</h1>
 
         <div class="eid-wish-message">
             اللہ رب العزت <span class="prayer-bullet">✨</span> اس مبارک دن کے صدقے آپ کے گھرانے پر اپنی رحمتوں کا سایہ ہمیشہ برقرار رکھے۔ <br>
-            دعا ہے <span class="prayer-bullet">✨</span> کہ یہ عید آپ کی زندگی میں نئی امیدیں، برکتیں اور بے شمار خوشیاں لے کر آئے۔ <br>
-            اللہ <span class="prayer-bullet">✨</span> آپ کو صحتِ کاملہ، رزق میں فراخی اور زندگی کے ہر موڑ پر کامیابی سے ہمکنار فرمائے۔ <br>
-            <strong style="color: #fff; display: block; margin-top: 15px; text-align: center;">عید الفطر بہت بہت مبارک ہو! آمین!</strong>
+            دعا ہے <span class="prayer-bullet">✨</span> کہ یہ عید آپ کی زندگی میں نئی امیدیں اور بے شمار خوشیاں لے کر آئے۔ <br>
+            اللہ <span class="prayer-bullet">✨</span> آپ کو صحتِ کاملہ، رزق میں فراخی اور زندگی کے ہر موڑ پر کامیابی نصیب فرمائے۔ <br>
+            <strong style="color: #fff; display: block; margin-top: 15px; text-align: center;">عید الفطر بہت بہت مبارک ہو!</strong>
         </div>
 
-        <a href="Https://suddaishks.github.io/suddais-portfolio/" target="_blank" class="developer-portfolio">
-            <i class="fas fa-code-branch"></i> DEVELOPER PROFILE
+        <a href="https://suddaishks.github.io/suddais-portfolio/" target="_blank" class="developer-portfolio">
+            <i class="fas fa-external-link-alt"></i> VISIT MY PORTFOLIO
         </a>
 
         <div id="creation-ui-box" class="creator-tool-box">
-            <input type="text" id="userInputName" placeholder="اپنا نام ٹائپ کریں...">
+            <input type="text" id="userInputName" placeholder="اپنا نام یہاں لکھیں...">
             <button class="btn-create-link" onclick="createFinalLink()">جادوئی لنک تیار کریں</button>
         </div>
 
         <div id="share-section">
-            <p style="margin-bottom: 15px; font-size: 0.9rem;">لنک تیار ہے! اب دوستوں کو سرپرائز دیں:</p>
+            <p style="margin-bottom: 10px; font-size: 0.85rem;">لنک تیار ہے! اب دوستوں کو بھیجیں:</p>
             <a id="whatsapp-share-btn" href="#" target="_blank" class="wa-share-link">
                 <i class="fab fa-whatsapp"></i> واٹس ایپ پر شیئر کریں
             </a>
@@ -225,28 +209,34 @@
     </div>
 
     <div class="developer-tag">
-        DEVELOPED BY <span>SUDAIS AHMED</span>
+        DESIGNED BY <span>SUDAIS AHMED</span>
     </div>
 </div>
 
 <script>
-    // ۱. یو آر ایل سے نام دکھانا
     const urlParams = new URLSearchParams(window.location.search);
     const fromName = urlParams.get('from');
     if (fromName) {
         document.getElementById('dynamic-sender-name').innerText = decodeURIComponent(fromName);
     }
 
-    // ۲. فائنل لنک بنانا (ڈویلپر کے نام کے ساتھ)
     function createFinalLink() {
         const name = document.getElementById('userInputName').value;
+        const portfolio = "https://suddaishks.github.io/suddais-portfolio/";
+        
         if (name) {
-            // نیا لنک جس میں 'from' پیرامیٹر میں نام ہوگا
             const baseLink = window.location.origin + window.location.pathname;
             const finalLink = baseLink + "?from=" + encodeURIComponent(name);
             
-            // واٹس ایپ شیئر میسج (ڈویلپر کا نام بھی شامل ہے)
-            const shareText = encodeURIComponent("دیکھو " + name + " نے سدیس احمد (ڈویلپر) کے ذریعے آپ کے لیے عید کا کتنا خوبصورت پیغام بھیجا ہے! 🌙✨\nفورا یہاں کلک کر کے دیکھیں: ") + finalLink;
+            // Professional message with portfolio link
+            const shareText = encodeURIComponent(
+                "🌙 *عید مبارک سرپرائز!* ✨\n\n" + 
+                "دیکھو *" + name + "* نے آپ کے لیے ایک خوبصورت پیغام بھیجا ہے! \n" +
+                "فورا یہاں کلک کریں: " + finalLink + "\n\n" +
+                "── • ☪ • ──\n" +
+                "Developed by: *Sudais Ahmed*\n" +
+                "Portfolio: " + portfolio
+            );
             
             document.getElementById('whatsapp-share-btn').href = "https://api.whatsapp.com/send?text=" + shareText;
             document.getElementById('creation-ui-box').style.display = "none";
@@ -256,32 +246,24 @@
         }
     }
 
-    // ۳. بیک گراؤنڈ ستارے (Particles) بنانا
+    // Star creation
     const starsContainer = document.getElementById('stars-field');
-    for (let i = 0; i < 90; i++) {
+    for (let i = 0; i < 70; i++) {
         const star = document.createElement('div');
         star.style.position = 'absolute';
-        star.style.width = Math.random() * 3.5 + 'px';
+        star.style.width = Math.random() * 3 + 'px';
         star.style.height = star.style.width;
         star.style.background = 'white';
         star.style.borderRadius = '50%';
         star.style.top = Math.random() * 100 + '%';
         star.style.left = Math.random() * 100 + '%';
         star.style.opacity = Math.random();
-        star.style.boxShadow = '0 0 10px white';
-        
-        // ہلکی سی اینیمیشن دیں ستاروں کو
-        star.style.animation = 'twinkle ' + (Math.random() * 5 + 3) + 's infinite';
-        
+        star.style.animation = 'twinkle ' + (Math.random() * 4 + 2) + 's infinite';
         starsContainer.appendChild(star);
     }
-    
-    // ستاروں کے لیے ہلکی سی اینیمیشن
+
     const styleSheet = document.createElement("style");
-    styleSheet.innerText = `@keyframes twinkle {
-        0%, 100% { opacity: 0.3; }
-        50% { opacity: 1; }
-    }`;
+    styleSheet.innerText = `@keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }`;
     document.head.appendChild(styleSheet);
 </script>
 
